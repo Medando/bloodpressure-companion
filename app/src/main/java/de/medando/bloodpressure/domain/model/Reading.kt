@@ -16,6 +16,14 @@ data class Reading(
     val comment: String? = null,
 ) {
     val pulsePressure: Int get() = systolic - diastolic
+
+    companion object {
+        /** Accepted range for systolic, diastolic and pulse. */
+        val VALUE_RANGE = 0..300
+        const val DEFAULT_SYSTOLIC = 120
+        const val DEFAULT_DIASTOLIC = 80
+        const val DEFAULT_PULSE = 70
+    }
 }
 
 enum class MeasurementSite {
