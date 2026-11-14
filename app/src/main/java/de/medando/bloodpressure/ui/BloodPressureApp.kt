@@ -15,11 +15,14 @@ import androidx.navigation3.ui.NavDisplay
 import de.medando.bloodpressure.R
 import de.medando.bloodpressure.ui.navigation.AnalysisRoute
 import de.medando.bloodpressure.ui.navigation.ExportRoute
+import de.medando.bloodpressure.ui.navigation.ReadingEditorRoute
 import de.medando.bloodpressure.ui.navigation.ReadingsRoute
 import de.medando.bloodpressure.ui.navigation.SettingsRoute
 import de.medando.bloodpressure.ui.navigation.TopLevelDestination
 import de.medando.bloodpressure.ui.navigation.rememberNavigationState
 import de.medando.bloodpressure.ui.navigation.toEntries
+import de.medando.bloodpressure.ui.reading.editor.ReadingEditorScreen
+import de.medando.bloodpressure.ui.reading.list.ReadingsScreen
 
 @Composable
 fun BloodPressureApp() {
@@ -47,7 +50,12 @@ fun BloodPressureApp() {
         NavDisplay(
             entries = navigation.toEntries(
                 entryProvider<NavKey> {
-                    entry<ReadingsRoute> { PlaceholderScreen(R.string.nav_readings) }
+                    entry<ReadingsRoute> {
+                        ReadingsScreen(onAddReading = { navigation.navigate(ReadingEditorRoute) })
+                    }
+                    entry<ReadingEditorRoute> {
+                        ReadingEditorScreen(onDone = { navigation.back(from = ReadingEditorRoute) })
+                    }
                     entry<AnalysisRoute> { PlaceholderScreen(R.string.nav_analysis) }
                     entry<ExportRoute> { PlaceholderScreen(R.string.nav_export) }
                     entry<SettingsRoute> { PlaceholderScreen(R.string.nav_settings) }

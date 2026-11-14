@@ -56,6 +56,26 @@ class NavigationStateTest {
     }
 
     @Test
+    fun `navigating to the current screen again does not stack it twice`() {
+        state.navigate(DetailRoute)
+        state.navigate(DetailRoute)
+
+        assertEquals(listOf(ReadingsRoute, DetailRoute), state.backStacks.getValue(READINGS).toList())
+    }
+
+    @Test
+    fun `leaving a screen twice only goes back once`() {
+        state.select(ANALYSIS)
+        state.navigate(DetailRoute)
+
+        state.back(from = DetailRoute)
+        state.back(from = DetailRoute)
+
+        assertEquals(ANALYSIS, state.topLevel)
+        assertTrue(state.isAtTopLevel)
+    }
+
+    @Test
     fun `a tab keeps its stack while another is selected`() {
         state.navigate(DetailRoute)
         state.select(SETTINGS)
