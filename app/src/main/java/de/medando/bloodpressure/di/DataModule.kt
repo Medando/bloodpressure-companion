@@ -21,6 +21,7 @@ import de.medando.bloodpressure.data.repository.RoomReadingRepository
 import de.medando.bloodpressure.domain.repository.DeviceRepository
 import de.medando.bloodpressure.domain.repository.ReadingRepository
 import de.medando.bloodpressure.domain.repository.SettingsRepository
+import java.time.Clock
 import javax.inject.Singleton
 
 @Module
@@ -45,6 +46,10 @@ object DataModule {
             // A corrupt file falls back to defaults instead of crashing every start.
             corruptionHandler = ReplaceFileCorruptionHandler { emptyPreferences() },
         ) { context.preferencesDataStoreFile("settings") }
+
+    /** For instants only; resolve the time zone where a local date or time is needed. */
+    @Provides
+    fun clock(): Clock = Clock.systemUTC()
 }
 
 @Module

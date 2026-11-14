@@ -6,4 +6,16 @@
     <string name="nav_export">Export</string>
     <string name="nav_settings">Einstellungen</string>
     <string name="placeholder_not_implemented">Noch nicht umgesetzt</string>
+    <string name="reading_editor_title_new">Neuer Messwert</string>
+    <string name="action_save">Speichern</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_add_reading">Messwert hinzufügen</string>
+    <string name="action_decrease">%1$s: Wert verringern</string>
+    <string name="action_increase">%1$s: Wert erhöhen</string>
+    <string name="field_systolic">Systolisch</string>
+    <string name="field_diastolic">Diastolisch</string>
+    <string name="field_pulse">Puls</string>
+    <string name="unit_mmhg">mmHg</string>
+    <string name="unit_pulse">/min</string>
+    <string name="error_value_range">Wert von %1$d bis %2$d eingeben</string>
 </resources>

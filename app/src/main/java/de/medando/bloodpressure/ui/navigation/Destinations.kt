@@ -11,6 +11,9 @@ import kotlinx.serialization.Serializable
 @Serializable data object ExportRoute : NavKey
 @Serializable data object SettingsRoute : NavKey
 
+/** Detail screens, shown on top of a tab. */
+@Serializable data object ReadingEditorRoute : NavKey
+
 /** Tabs of the navigation bar or rail. The first entry is the start destination. */
 enum class TopLevelDestination(
     val route: NavKey,

@@ -46,13 +46,18 @@ class NavigationState internal constructor(
         }
     }
 
-    /** Opens [route] on top of the current tab. */
+    /** Opens [route] on top of the current tab; a repeated request (double tap) is ignored. */
     fun navigate(route: NavKey) {
-        currentStack.add(route)
+        if (currentStack.lastOrNull() != route) currentStack.add(route)
     }
 
     fun back() {
         if (currentStack.size > 1) currentStack.removeLastOrNull() else topLevel = start
+    }
+
+    /** Leaves [from] only while it is still the current screen, so a repeated request is ignored. */
+    fun back(from: NavKey) {
+        if (currentStack.lastOrNull() == from) back()
     }
 }
 
