@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed icon: only alpha is used, so the heart is an outline around the pulse line. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.5"
+        android:strokeLineJoin="round"
+        android:pathData="M54,74 L50.5,70.8 C38,59.5 30,52.2 30,43.2 C30,35.9 35.7,30.2 43,30.2 C47.1,30.2 51.1,32.1 54,35.1 C56.9,32.1 60.9,30.2 65,30.2 C72.3,30.2 78,35.9 78,43.2 C78,52.2 70,59.5 57.5,70.8 Z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M39,50 L46,50 L50,42 L56,58 L60,50 L69,50" />
+</vector>

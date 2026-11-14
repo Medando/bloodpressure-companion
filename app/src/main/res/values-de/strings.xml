@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blutdruck Companion</string>
+    <string name="nav_readings">Messwerte</string>
+    <string name="nav_analysis">Auswertung</string>
+    <string name="nav_export">Export</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="placeholder_not_implemented">Noch nicht umgesetzt</string>
+</resources>
