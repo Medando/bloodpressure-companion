@@ -21,4 +21,6 @@
     <string name="disclaimer_title">Medizinischer Hinweis</string>
     <string name="disclaimer_text">Diese App ist ein persönliches Tagebuch für Ihre Blutdruckwerte.\n\nDie App ist kein Medizinprodukt. Sie gibt keine medizinischen Ratschläge, stellt keine Diagnosen und ersetzt keine Behandlung. Einstufungen und Statistiken dienen nur zur Information und können falsch sein.\n\nBesprechen Sie Ihre Messwerte und Ihre Behandlung immer mit Ihrer Ärztin oder Ihrem Arzt. Ändern Sie Ihre Medikamente oder deren Dosierung nie aufgrund von Angaben dieser App.\n\nRufen Sie im Notfall sofort den Notruf an.\n\nIhre Messwerte werden auf Ihrem Gerät gespeichert. Wenn die Android-Sicherung aktiviert ist, sind sie in der verschlüsselten Gerätesicherung enthalten.\n\nDie Nutzung erfolgt auf eigene Gefahr. Die App ist Open Source unter der Apache License 2.0 und wird ohne jede Gewährleistung bereitgestellt.</string>
     <string name="action_accept">Akzeptieren</string>
+    <string name="settings_first_day_of_week">Erster Tag der Woche</string>
+    <string name="settings_first_day_of_week_system">Systemstandard (%1$s)</string>
 </resources>
