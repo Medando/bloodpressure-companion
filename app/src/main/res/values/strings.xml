@@ -18,4 +18,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_pulse">bpm</string>
     <string name="error_value_range">Enter a value from %1$d to %2$d</string>
+    <string name="disclaimer_title">Medical disclaimer</string>
+    <string name="disclaimer_text">This app is a personal diary for your blood pressure readings.\n\nIt is not a medical device. It does not give medical advice and does not diagnose or treat any condition. Classifications and statistics are for information only and can be wrong.\n\nAlways talk to your doctor about your readings and your treatment. Never change your medication or its dose based on information from this app.\n\nIn an emergency, call your local emergency number.\n\nYour readings are stored on your device. If Android backup is turned on, they are included in your encrypted device backup.\n\nYou use this app at your own risk. It is open source under the Apache License 2.0 and comes without any warranty.</string>
+    <string name="action_accept">Accept</string>
 </resources>

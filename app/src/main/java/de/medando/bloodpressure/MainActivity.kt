@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import de.medando.bloodpressure.ui.BloodPressureApp
+import de.medando.bloodpressure.ui.disclaimer.DisclaimerGate
 import de.medando.bloodpressure.ui.theme.BloodPressureTheme
 
 @AndroidEntryPoint
@@ -15,7 +16,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BloodPressureTheme {
-                BloodPressureApp()
+                DisclaimerGate {
+                    BloodPressureApp()
+                }
             }
         }
     }

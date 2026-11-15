@@ -13,6 +13,7 @@ data class Settings(
     val targetRange: TargetRange? = null,
     val name: String? = null,
     val dateOfBirth: LocalDate? = null,
+    val disclaimerAccepted: Boolean = false,
 )
 
 data class TimesOfDay(

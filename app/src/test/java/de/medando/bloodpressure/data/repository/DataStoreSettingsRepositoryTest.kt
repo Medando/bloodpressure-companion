@@ -49,6 +49,7 @@ class DataStoreSettingsRepositoryTest {
         targetRange = TargetRange(maxSystolic = 130, maxDiastolic = 80),
         name = "Ada Lovelace",
         dateOfBirth = LocalDate.of(1960, 2, 29),
+        disclaimerAccepted = true,
     )
 
     @Test
@@ -94,11 +95,24 @@ class DataStoreSettingsRepositoryTest {
         assertEquals("Ada", repository.settings.first().name)
     }
 
+    private suspend fun storedKeys() = dataStore.data.first().asMap().keys.map { it.name }
+
     @Test
     fun `defaults are not persisted`() = scope.runTest {
         repository.update { it.copy(name = "Ada") }
+        assertEquals(listOf("name"), storedKeys())
 
-        assertEquals(listOf("name"), dataStore.data.first().asMap().keys.map { it.name })
+        repository.update { custom }
+        repository.update { Settings(name = "Ada") }
+        assertEquals(listOf("name"), storedKeys())
+    }
+
+    @Test
+    fun `accepted disclaimer is persisted`() = scope.runTest {
+        repository.update { it.copy(disclaimerAccepted = true) }
+
+        assertEquals(mapOf("disclaimer_accepted" to true), dataStore.data.first().asMap().mapKeys { it.key.name })
+        assertTrue(repository.settings.first().disclaimerAccepted)
     }
 
     @Test

@@ -3,6 +3,7 @@ package de.medando.bloodpressure.data.repository
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
@@ -45,6 +46,7 @@ class DataStoreSettingsRepository @Inject constructor(
         val targetDiastolic = intPreferencesKey("target_diastolic")
         val name = stringPreferencesKey("name")
         val dateOfBirth = longPreferencesKey("date_of_birth_epoch_day")
+        val disclaimerAccepted = booleanPreferencesKey("disclaimer_accepted")
     }
 
     private fun Preferences.toSettings(): Settings {
@@ -68,6 +70,7 @@ class DataStoreSettingsRepository @Inject constructor(
             targetRange = if (sys != null && dia != null) TargetRange(sys, dia) else null,
             name = this[Keys.name],
             dateOfBirth = this[Keys.dateOfBirth]?.let(LocalDate::ofEpochDay),
+            disclaimerAccepted = this[Keys.disclaimerAccepted] ?: DEFAULTS.disclaimerAccepted,
         )
     }
 
@@ -88,5 +91,6 @@ class DataStoreSettingsRepository @Inject constructor(
         set(Keys.targetDiastolic, s.targetRange?.maxDiastolic)
         set(Keys.name, s.name?.trim()?.takeIf { it.isNotEmpty() })
         set(Keys.dateOfBirth, s.dateOfBirth?.toEpochDay())
+        set(Keys.disclaimerAccepted, s.disclaimerAccepted.takeIf { it != DEFAULTS.disclaimerAccepted })
     }
 }
