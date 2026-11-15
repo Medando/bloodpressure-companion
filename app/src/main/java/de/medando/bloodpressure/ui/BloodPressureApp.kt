@@ -23,6 +23,7 @@ import de.medando.bloodpressure.ui.navigation.rememberNavigationState
 import de.medando.bloodpressure.ui.navigation.toEntries
 import de.medando.bloodpressure.ui.reading.editor.ReadingEditorScreen
 import de.medando.bloodpressure.ui.reading.list.ReadingsScreen
+import de.medando.bloodpressure.ui.settings.SettingsScreen
 
 @Composable
 fun BloodPressureApp() {
@@ -58,7 +59,7 @@ fun BloodPressureApp() {
                     }
                     entry<AnalysisRoute> { PlaceholderScreen(R.string.nav_analysis) }
                     entry<ExportRoute> { PlaceholderScreen(R.string.nav_export) }
-                    entry<SettingsRoute> { PlaceholderScreen(R.string.nav_settings) }
+                    entry<SettingsRoute> { SettingsScreen() }
                 },
             ),
             onBack = navigation::back,
