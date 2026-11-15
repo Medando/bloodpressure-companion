@@ -95,6 +95,7 @@ fun ReadingEditorContent(
             )
         },
     ) { innerPadding ->
+        if (uiState.isLoading) return@Scaffold
         Box(
             modifier = Modifier
                 .fillMaxSize()
