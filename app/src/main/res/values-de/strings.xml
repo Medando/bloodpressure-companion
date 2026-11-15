@@ -18,4 +18,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_pulse">/min</string>
     <string name="error_value_range">Wert von %1$d bis %2$d eingeben</string>
+    <string name="disclaimer_title">Medizinischer Hinweis</string>
+    <string name="disclaimer_text">Diese App ist ein persönliches Tagebuch für Ihre Blutdruckwerte.\n\nDie App ist kein Medizinprodukt. Sie gibt keine medizinischen Ratschläge, stellt keine Diagnosen und ersetzt keine Behandlung. Einstufungen und Statistiken dienen nur zur Information und können falsch sein.\n\nBesprechen Sie Ihre Messwerte und Ihre Behandlung immer mit Ihrer Ärztin oder Ihrem Arzt. Ändern Sie Ihre Medikamente oder deren Dosierung nie aufgrund von Angaben dieser App.\n\nRufen Sie im Notfall sofort den Notruf an.\n\nIhre Messwerte werden auf Ihrem Gerät gespeichert. Wenn die Android-Sicherung aktiviert ist, sind sie in der verschlüsselten Gerätesicherung enthalten.\n\nDie Nutzung erfolgt auf eigene Gefahr. Die App ist Open Source unter der Apache License 2.0 und wird ohne jede Gewährleistung bereitgestellt.</string>
+    <string name="action_accept">Akzeptieren</string>
 </resources>
