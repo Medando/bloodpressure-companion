@@ -54,6 +54,15 @@ class ReadingEditorContentTest {
     }
 
     @Test
+    fun hidesFieldsAndDisablesSaveWhileLoading() {
+        setContent(ReadingEditorUiState(isLoading = true))
+
+        compose.onNodeWithText(string(R.string.field_systolic)).assertDoesNotExist()
+        compose.onNodeWithText("120").assertDoesNotExist()
+        compose.onNodeWithText(string(R.string.action_save)).assertIsNotEnabled()
+    }
+
+    @Test
     fun invalidValueShowsErrorAndDisablesSave() {
         setContent(ReadingEditorUiState(values = ReadingEditorUiState().values + (ValueField.PULSE to "")))
 
