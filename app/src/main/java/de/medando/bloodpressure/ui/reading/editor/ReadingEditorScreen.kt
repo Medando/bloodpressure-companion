@@ -18,7 +18,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -34,9 +36,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -145,29 +146,30 @@ private fun ValueInput(
         if (isFocused) value = value.copy(selection = TextRange(0, value.text.length))
     }
 
+    // TalkBack keeps focus on a stepper, so it announces the new value as the stepper's state.
+    val stepperSemantics = Modifier.semantics { stateDescription = text }
+
     OutlinedTextField(
         value = value,
         onValueChange = {
             value = it
             if (it.text != text) onValueChange(it.text)
         },
-        modifier = Modifier
-            .fillMaxWidth()
-            // Announces a value changed by the steppers.
-            .semantics { liveRegion = LiveRegionMode.Polite },
+        modifier = Modifier.fillMaxWidth(),
         label = { Text(label) },
         leadingIcon = {
-            IconButton(onClick = { onStep(-1) }) {
+            IconButton(onClick = { onStep(-1) }, modifier = stepperSemantics) {
                 Icon(painterResource(R.drawable.ic_remove), stringResource(R.string.action_decrease, label))
             }
         },
         trailingIcon = {
-            IconButton(onClick = { onStep(1) }) {
+            IconButton(onClick = { onStep(1) }, modifier = stepperSemantics) {
                 Icon(painterResource(R.drawable.ic_add), stringResource(R.string.action_increase, label))
             }
         },
         suffix = { Text(stringResource(field.unit)) },
         isError = isError,
+        colors = OutlinedTextFieldDefaults.colors(errorLeadingIconColor = MaterialTheme.colorScheme.error),
         // Always present, so the layout doesn't jump while a field is briefly empty.
         supportingText = {
             Text(

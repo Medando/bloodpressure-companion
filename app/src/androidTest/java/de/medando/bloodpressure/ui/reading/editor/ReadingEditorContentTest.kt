@@ -3,8 +3,16 @@ package de.medando.bloodpressure.ui.reading.editor
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toPixelMap
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -14,6 +22,7 @@ import androidx.compose.ui.test.performTextReplacement
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import de.medando.bloodpressure.R
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -71,6 +80,27 @@ class ReadingEditorContentTest {
     }
 
     @Test
+    fun invalidValueTintsBothSteppers() {
+        setContent(ReadingEditorUiState(values = ReadingEditorUiState().values + (ValueField.PULSE to "")))
+        val pulse = string(R.string.field_pulse)
+        val error = lightColorScheme().error
+
+        assertTrue(compose.onNodeWithContentDescription(string(R.string.action_decrease, pulse)).hasPixel(error))
+        assertTrue(compose.onNodeWithContentDescription(string(R.string.action_increase, pulse)).hasPixel(error))
+    }
+
+    @Test
+    fun steppersExposeValueAsState() {
+        setContent()
+        val systolic = string(R.string.field_systolic)
+        val hasValue = SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "120")
+
+        compose.onNodeWithContentDescription(string(R.string.action_decrease, systolic)).assert(hasValue)
+        compose.onNodeWithContentDescription(string(R.string.action_increase, systolic)).assert(hasValue)
+        compose.onNodeWithText("120").assert(SemanticsMatcher.keyNotDefined(SemanticsProperties.LiveRegion))
+    }
+
+    @Test
     fun forwardsUserActions() {
         setContent()
 
@@ -85,5 +115,10 @@ class ReadingEditorContentTest {
             listOf("change SYSTOLIC 135", "step DIASTOLIC 1", "step PULSE -1", "save", "cancel", "save"),
             events,
         )
+    }
+
+    private fun SemanticsNodeInteraction.hasPixel(color: Color): Boolean {
+        val pixels = captureToImage().toPixelMap()
+        return (0 until pixels.width).any { x -> (0 until pixels.height).any { y -> pixels[x, y] == color } }
     }
 }
